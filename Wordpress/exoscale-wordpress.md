@@ -1,3 +1,9 @@
+---
+title: Installaing Wordpress with CloudInit
+date: 2014-01-16 09:28 +01:00
+category: Wordpress
+tags: linux, cloudinit, wordpress
+---
 __Originaly published on our blog__
 
 Each programming language has its "Hello World" tutorial. In the cloud 

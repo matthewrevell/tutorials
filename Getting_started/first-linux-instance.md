@@ -1,3 +1,9 @@
+---
+title: First linux instance
+date: 2014-01-16 09:28 +01:00
+category: Getting started
+tags: linux
+---
 ### Creating the instance
 
 * Go to the [instances view](/instances) and click the "add" button.

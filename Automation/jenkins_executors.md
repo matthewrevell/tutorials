@@ -1,3 +1,10 @@
+---
+title: Jenkins executors
+date: 2014-01-16 09:28 +01:00
+category: Automation
+tags: jenkins, application, development, tests
+---
+
 While we are working on our own version of continuous integration with
 Jenkins and exoscale, litterature alredy exists with a more generic approach:
 

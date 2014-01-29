@@ -1,3 +1,10 @@
+---
+title: Adding ping connectivity to your instances
+date: 2014-01-16 09:28 +01:00
+category: Firewall
+tags: ping, network, ICMP, Firewall
+---
+
 ### Understanding ICMP
 
 On top of TCP and UDP traffic, the Internet Protocol (IP) can also carry

@@ -1,3 +1,9 @@
+---
+title: Key concepts
+date: 2014-01-16 09:28 +01:00
+category: Getting started
+tags: concepts, cloud
+---
 exoscale is a public infrastructure-as-a-service provider and builds up on the
 following key concepts.
 

@@ -1,3 +1,9 @@
+---
+title: Bootstrap your instances with CloudInit and User Data 
+date: 2014-01-16 09:28 +01:00
+category: Automation
+tags: linux, userdata
+---
 __Originaly published on our blog__
 
 User-data is now a commonly used format to make an instance do stuff while it boots. It consist of a file that is served to a booting instance and includes actions and blobs of data. It can be passed to the instance in either raw text or separate, optionally compressed part files.

@@ -1,3 +1,9 @@
+---
+title: Outbound traffic rules, accept or deny
+date: 2014-01-16 09:28 +01:00
+category: Firewall
+tags: network, traffic, Firewall
+---
 By default and without any rule specified, all outbound traffic is authorized.
 However, as soon as you add your first outbound rule, only the traffic
 explicited in outbound rules is allowed.

@@ -1,3 +1,9 @@
+---
+title: SSH keypairs
+date: 2014-01-16 09:28 +01:00
+category: Getting started
+tags: security, ssh
+---
 Keypairs are a way for you to automatically provision linux machines with SSH
 public keys to use for Public-Key authentication with SSHv2.
 
