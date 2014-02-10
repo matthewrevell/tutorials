@@ -37,12 +37,12 @@ and create a new file in the selected directory.
 
 At the top of the file add the following section: 
 
-    ---
+    
     title: Contribute Tutorials
     date: 2014-02-10 09:28 +01:00
     category: Community
     tags: community, contribute, tutorials
-    ---
+    
 
 Where:
 
