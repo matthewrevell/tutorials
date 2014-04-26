@@ -4,6 +4,7 @@ date: 2014-04-26 19:28 +01:00
 category: Filesharing
 tags: ubuntu, pydio, filesharing
 ---
+
 Pydio allows you to instantly turn any server into a powerful file sharing 
 platform. Formerly known as AjaXplorer.
 
