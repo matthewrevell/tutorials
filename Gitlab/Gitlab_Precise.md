@@ -5,6 +5,7 @@ category: Gitlab
 tags: ubuntu, gitlab, vagrant
 ---
 
+
 ## What is Gitlab
 
 GitLab offers git repository management, code reviews, issue tracking, activity feeds and wikis. 
@@ -14,6 +15,7 @@ GitLab Community Edition (CE) is open source software to collaborate on code.
 Create projects and repositories, manage access and do code reviews. 
 GitLab CE is on-premises software that you can install and use on your server(s).
 
+
 ## What is Vagrant
 
 Create and configure lightweight, reproducible, and portable development environments.
@@ -22,11 +24,13 @@ Vagrant provides easy to configure, reproducible, and portable work environments
 
 To achieve its magic, Vagrant stands on the shoulders of giants. Machines are provisioned on top of VirtualBox, VMware, AWS, or any other provider. Then, industry-standard provisioning tools such as shell scripts, Chef, or Puppet, can be used to automatically install and configure software on the machine.
 
+
 ## What we'll do
 
 We will show you how to configure a Vagrantfile to deploy an Ubuntu 12.04 instance, provision it with Puppet to install Gitlab and its dependencies. All what's left to you is to update your DNS records and you will be hosting a Github replacement.
 
 This tutorial has been tested with Vagrant 1.6.2 and the vagrant-cloudstack plugin v0.6.0.
+
 
 ## Prerequisites
 
@@ -39,20 +43,22 @@ This tutorial has been tested with Vagrant 1.6.2 and the vagrant-cloudstack plug
 
 1. Install the box
 	* Download the box from [exoscale's Open Cloud Compute templates](https://www.exoscale.ch/open-cloud/templates/ "exoscale"): it should be Linux Ubuntu 14.04 LTS 64-bit 50GB Disk
-	* Download `https://github.com/exoscale/vagrant-exoscale-boxes/raw/master/exoscale-boxes/Linux-Ubuntu-12.04-LTS-64-bit-50GB-Disk.box`
 	* `vagrant box add Linux-Ubuntu-12.04-LTS-64-bit-50GB-Disk Linux-Ubuntu-12.04-LTS-64-bit-50GB-Disk.box`
 2. Create a directory for this tutorial and change directory
 	* `mkdir -p ~/src/exoscale/gitlab-on-exo`
 	* `cd ~/src/exoscale/gitlab-on-exo`
 3. Run `vagrant init Linux-Ubuntu-12.04-LTS-64-bit-50GB-Disk`. This will create a Vagrantfile, initialized with the exoscale box. Inside the `Vagrant.configure` block, remove everything except the line starting with `config.vm.box`
 
-`VAGRANTFILE_API_VERSION = "2"
+
+```ruby
+VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.box = "Linux-Ubuntu-12.04-LTS-64-bit-50GB-Disk"
   
-end`
+end
+```
 
 ## SSH config
 
@@ -60,18 +66,18 @@ To access the instance once it's provisionned, you need to provide the username 
 
 To do this, according to [Vagrant's documentation](http://docs.vagrantup.com/v2/ "Vagrant documentation"), all you need to do is add the following parameters to your Vagrantfile :
 
-* config.ssh.username
-* config.ssh.private_key_path
+* `config.ssh.username`
+* `config.ssh.private_key_path`
 
 Exoscale's instances are created without any users, only root. So after `config.vm.box` you need to add:
 
-* config.ssh.username = "root"
+* `config.ssh.username = "root"`
 
 And, you probably guessed it, the private_key_path parameter is the path to your own private key, that you've set up in [exoscale's portal](https://portal.exoscale.ch "exoscale portal"). If not, it's time to go read the [documentation](https://portal.exoscale.ch/documentation/open-cloud/tutorials/ssh-keypairs "keypairs documentation").
 
 So it should look something like:
 
-* config.ssh.private_key_path = "~/.ssh/id_rsa" 
+* `config.ssh.private_key_path = "~/.ssh/id_rsa"`
 
 ## Provider config
 
@@ -124,14 +130,15 @@ To create a security group from Vagrant, you need to add the `cloudstack.securit
 
 So you can start by adding the following inside the `config.vm.provider :cloudstack do |cloudstack, override|` block, under `cloudstack.network_type = "Basic"`:
 
-`cloudstack.security_groups = [
+```ruby
+cloudstack.security_groups = [
     { 
       :name         => "gitlab_on_precise_from_vagrant",
       :description  => "Created from the Vagrantfile",
-			:rules 				=> 
+			:rules 	=> 
 	  }
   ]
-`
+```
 
 All we're missing is... the actual rules! It's a Ruby Array `[]`. It should contain one Hash `{}` per rule.
 
@@ -140,7 +147,8 @@ All we're missing is... the actual rules! It's a Ruby Array `[]`. It should cont
 
 So the `cloudstack.security_groups` looks like this:
 
-`cloudstack.security_groups = [
+```ruby
+cloudstack.security_groups = [
     { 
       :name         => "gitlab_on_precise_from_vagrant",
       :description  => "Created from the Vagrantfile",
@@ -150,7 +158,7 @@ So the `cloudstack.security_groups` looks like this:
 			]
 	  }
   ]
-`
+```
 
 Now you would be able to SSH into your instance, if you were to start it now. But it wouldn't run any service.
 
@@ -202,7 +210,7 @@ At the root of our tutorial directory, let create a Puppetfile.
 * `touch ~/src/exoscale/gitlab-on-exo/Puppetfile`
 
 The content should be:
-`
+```
 forge 'http://forge.puppetlabs.com'
 
 mod 'gitlab',
@@ -211,7 +219,8 @@ mod 'gitlab',
 mod 'gitlab_requirements',
     :git  => 'git://github.com/sbadia/puppet-gitlab-requirements',
 		:ref  => 'a70ef46203eca56beed1fb88ff186583cd1a50ca'
-`
+```
+
 We won't go into details as to what the Puppetfile does. Librarian-Puppet will simply install the `gitlab` module, the `gitlab_requirements` module, from Github, and the dependencies of both modules. The `:ref` specifies which version/commit we want, and it's simply because we've tested it.
 Puppet will be able to get the Puppet modules to install Gitlab.
 
@@ -227,7 +236,8 @@ Let's create an "init.pp" file and describe the configuration we want.
 
 The content of the file is the following:
 
-` node 'gitlab.yourdomain.tld' {
+```ruby
+node 'gitlab.yourdomain.tld' {
 	
 	$gitlab_dbname  = 'gitlab_prod'
 	$gitlab_dbuser  = 'gitlab_user'
@@ -254,7 +264,8 @@ The content of the file is the following:
 	    ensure => absent,
 	  } ->
 	  exec { '/usr/sbin/service nginx reload': }
-} `
+}
+```
 
 You should, of course, update the `$gitlab_dbpwd`, the `git_email` and `gitlab_domain`.
 
@@ -266,7 +277,7 @@ So how does Vagrant know it should use Puppet ? How does it know where the Puppe
 
 We simply need to add the following in our `config.vm.define "gitlab1204"...` block:
 
-`
+```ruby
 gitlab.vm.provision "puppet" do |puppet|
   puppet.facter = {
     "fqdn"	=> "gitlab.yourdomain.tld"
@@ -275,7 +286,7 @@ gitlab.vm.provision "puppet" do |puppet|
   puppet.manifest_file  = "init.pp"
   puppet.module_path = 'modules'
 end
-`
+```
 
 And one last line to add, this time before the block:
 
