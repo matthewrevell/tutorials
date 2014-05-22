@@ -100,7 +100,9 @@ Add the following lines inside the block:
 * `cloudstack.secret_key = "your_secret_key"`
 
 So now, Cloudstack knows who we are and how to connect us to the instance. So let tell Cloudstack what kind of "offering" we need. Gitlab's requirement is 2 cores and 2GB, so we need a Small instance.
-Add the following line inside the block:
+You can see all of exoscale's Service Offering by [querying the API from your browser](https://portal.exoscale.ch/api/serviceofferings "exoscale's service offerings"). It returns JSON formatted content. 
+
+Grab the `id` of the Service Offering and add the following line inside the block:
 
 * `cloudstack.service_offering_id = "21624abb-764e-4def-81d7-9fc54b5957fb"`
 
