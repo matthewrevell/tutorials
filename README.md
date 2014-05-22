@@ -39,6 +39,7 @@ At the top of the file add the following section:
     title: Contribute Tutorials
     date: 2014-02-10 09:28 +01:00
     category: Community
+    authors: exoscale
     tags: community, contribute, tutorials
     
 
@@ -47,6 +48,7 @@ Where:
 * title: is the title that will be displayed in the index
 * date: date of the article or last modification
 * category: the name in lowercase of the directory
+* authors: list of github nicknames (optional)
 * tags: a list of related tags to the article (max 10)
 
 Then add your content in plain Markdown format. Follow documentation
