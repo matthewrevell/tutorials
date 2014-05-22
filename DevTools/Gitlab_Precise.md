@@ -1,7 +1,8 @@
 ---
 title: Deploy Gitlab on Ubuntu 12.04 with Vagrant
 date: 2014-05-18 20:00 +01:00
-category: Gitlab
+category: DevTools
+author: nicolasbrechet
 tags: ubuntu, gitlab, vagrant
 ---
 
