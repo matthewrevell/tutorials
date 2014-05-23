@@ -212,12 +212,13 @@ At the root of our tutorial directory, let create a Puppetfile.
 * `touch ~/src/exoscale/gitlab-on-exo/Puppetfile`
 
 The content should be:
+
 ```
 forge 'http://forge.puppetlabs.com'
 
 mod 'gitlab',
     :git  => 'git://github.com/sbadia/puppet-gitlab.git',
-		:ref  => '53e05d36d1009dfce085352374eadade779587e9'
+		:ref  => '0.1.3'
 mod 'gitlab_requirements',
     :git  => 'git://github.com/sbadia/puppet-gitlab-requirements',
 		:ref  => 'a70ef46203eca56beed1fb88ff186583cd1a50ca'
