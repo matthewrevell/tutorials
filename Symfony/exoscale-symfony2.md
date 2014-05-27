@@ -71,7 +71,7 @@ Of course also alter the git clone argument passed to your instance via user-dat
 To modify your configuration, clone this very repository and adjust files and manifests accordingly. 
 Do not forget to replace the URL in the userdata script.
 
-## Trooblshooting: 
+## Troublshooting: 
 
 Wait few minutes after server ready on your exoscale console.
 
