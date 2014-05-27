@@ -1,3 +1,10 @@
+---
+title: Installing Symfony2 with CloudInit on Ubuntu 14.04LTS
+date: 2014-05-27 10:00 +01:00
+category: Symfony 2
+tags: linux, cloudinit, symfony2
+---
+
 exoscale-symfony2
 ==================
 
