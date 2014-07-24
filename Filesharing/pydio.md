@@ -21,7 +21,7 @@ This guide installs Pydio on exoscale.
 
 Add a the official Pydio repository to your instance:
 
-    sudo vi /etc/sources.list.d/pydio.list
+    sudo vi /etc/apt/sources.list.d/pydio.list
 
 And copy the following contents:
 
