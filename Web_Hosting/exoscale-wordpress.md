@@ -1,7 +1,7 @@
 ---
 title: Installing Wordpress with CloudInit
 date: 2014-01-16 09:28 +01:00
-category: Wordpress
+category: Web hosting
 tags: linux, cloudinit, wordpress
 ---
 __Originaly published on our blog__

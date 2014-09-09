@@ -10,7 +10,7 @@ User-data is now a commonly used format to make an instance do stuff while it bo
 
 We have made it pretty easy to manage and edit your user-data on exoscale with a new tab in our instance creation box:
 
-![user-data form](/static/images/kb/userdata.png)
+![user-data form](userdata_support.png)
 
 User-data is tightly linked to cloud-init, a package which handles the post boot process of an instance. Exoscale already uses cloud-init in order to set up your SSH keys and to apply a matching hostname toe the instance.
 

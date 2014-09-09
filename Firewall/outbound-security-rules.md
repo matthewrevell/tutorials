@@ -16,7 +16,7 @@ rules must be added:
 
 The screenshot below shows a properly configured security group:
 
-![Outbound Rules](/static/images/kb/Outbound_traffic_rules.png)
+![Outbound Rules](outbound-security-rules.png)
 
 These 2 rules are required for:
 

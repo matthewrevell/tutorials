@@ -33,13 +33,13 @@ To add ingress ping connectivity to your instance follow this procedure:
 * **Save**: Save your rule by pressing on Add and allow a few moments for 
   the rule to propagate on the exoscale cloud
 
-![Addin ECHO ICMP Rule](/static/images/kb/adding-ping-2.png)
+![Addin ECHO ICMP Rule](adding-ping-2.png)
 
 #### Result:
 
 The resulting rules appears like this:
 
-![Echo ICMP Rule](/static/images/kb/adding-ping-1.png)
+![Echo ICMP Rule](adding-ping-1.png)
 
 #### Reminder:
 
@@ -53,4 +53,4 @@ The resulting rules appears like this:
   is restricted, add an outbound rule with ICMP Type ECHO REPLY (type 0) and 
   code NO CODE.
 
-![Addin ECHO REPLY ICMP Rule](/static/images/kb/adding-ping-3.png)
+![Addin ECHO REPLY ICMP Rule](adding-ping-3.png)
