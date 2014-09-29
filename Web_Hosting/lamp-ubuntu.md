@@ -10,7 +10,7 @@ or 14.04 TLS template from the official exoscale bare instance
 list to a full working LAMP server.
 
 We are going to rely on the included Ubuntu way of doing this 
-task using the Tast Selector that is usually run at server
+task using the Task Selector that is usually run at server
 installation time.
 
 ## Install Task Selector
