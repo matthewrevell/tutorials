@@ -5,7 +5,7 @@ category: Firewall
 tags: security groups, network, Firewall
 ---
 
-### Organizing security groups
+## Organizing security groups
 
 Security Groups provide a modular way to define and compose firewall rules.
 
@@ -45,7 +45,7 @@ architectures where a single machine can play all different roles. This
 way your infrastructure is ready for growth and allows later separation of
 services across different machines.
 
-### Security group features
+## Security group features
 
 When adding a rule to a security group, you can set the following properties:
 
