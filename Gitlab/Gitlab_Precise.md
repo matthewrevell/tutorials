@@ -63,7 +63,7 @@ end
 
 ## SSH config
 
-To access the instance once it's provisionned, you need to provide the username you're connecting with, and its private SSH key.
+To access the instance once it's provisioned, you need to provide the username you're connecting with, and its private SSH key.
 
 To do this, according to [Vagrant's documentation](http://docs.vagrantup.com/v2/ "Vagrant documentation"), all you need to do is add the following parameters to your Vagrantfile :
 
@@ -165,7 +165,7 @@ cloudstack.security_groups = [
 
 Now you would be able to SSH into your instance, if you were to start it now. But it wouldn't run any service.
 
-## Provisionning
+## Provisioning
 
 Let's "define" our instance in the Vagrantfile. This will allow us to provision it using the methods we want.
 After the `config.vm.provider...` add the following block:
@@ -173,7 +173,7 @@ After the `config.vm.provider...` add the following block:
 `config.vm.define "precise_gitlab" do |gitlab|
 end`
 
-This does nothing, so we need to add some provisionning instructions inside this block.
+This does nothing, so we need to add some provisioning instructions inside this block.
 
 ### Bootstrapping Puppet
 
@@ -190,9 +190,9 @@ In the Vagrantfile, we need to add the following line to our last block:
 
 * `gitlab.vm.provision :shell, path: "./puppet-bootstrap/ubuntu.sh"`
 
-It's simply telling Vagrant to use the "shell" provisionner to run the script at path "`./puppet-bootstrap/puppet-bootstrap.sh`"
+It's simply telling Vagrant to use the "shell" provisioner to run the script at path "`./puppet-bootstrap/puppet-bootstrap.sh`"
 
-Let's add an "inline" shell provisionning instruction, to be sure we have the "build-essential" package. 
+Let's add an "inline" shell provisioning instruction, to be sure we have the "build-essential" package. 
 
 * `gitlab.vm.provision :shell, inline: "apt-get -y install build-essential"`
 
