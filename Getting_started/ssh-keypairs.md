@@ -26,12 +26,12 @@ access control is the job of configuration management tools.
 
 Keypairs can be managed in two ways from the [keypairs view](/keypairs).
 
-### Importing a keypair
+## Importing a keypair
 
 If you aleady have an SSH key, select the "Import" tab on the keypair creation
 view. Paste the content of the **public** key in the box.
 
-### Creating a keypair
+## Creating a keypair
 
 If you do not have a keypair, you can let exoscale create one for you. On the
 creation view, select the "Create" tab and set the keypair name.
@@ -40,7 +40,7 @@ Save the private key that appears on the screen. That private key is also
 emailed to you. If you don't want your private key to transit via email we
 recommend creating an RSA key on your machine and importing it instead.
 
-### Provisioning an instance with a keypair
+## Provisioning an instance with a keypair
 
 When creating instances, simply select the keypair you want to be associated
 to this instance and the person holding the corresponding private key will be
