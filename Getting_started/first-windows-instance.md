@@ -4,7 +4,7 @@ date: 2014-01-16 09:28 +01:00
 category: Getting started
 tags: windows
 ---
-## Creating your instance
+## Creating your Windows instance
 
 * Go to the [instances view](/instances) and click the "add" button.
 * Enter the hostname of the instance and set its various properties (*Type*,
