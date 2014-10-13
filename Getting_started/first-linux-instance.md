@@ -16,7 +16,7 @@ tags: linux
 Within a couple of seconds, your instance should appear in the instance list
 with the "Starting" status then switch to "Running" status.
 
-## Logging in to your instance
+## Logging in to your Linux instance
 
 First, make sure the default securitygroup allows SSH access: from the
 instance list or detail view, click on the security group name ("default" if

@@ -13,7 +13,7 @@ tags: windows
   50GB of disk and 1GB of RAM.
 * Click the "Create my instance" button.
 
-## Logging in to your instance
+## Logging in to your Windows instance
 
 First, make sure the default securitygroup allows <abbr title="Remote Desktop
 Protocol">RDP</abbr> access: from the instance list or detail view, click
