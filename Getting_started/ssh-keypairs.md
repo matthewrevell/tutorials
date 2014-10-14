@@ -49,3 +49,16 @@ able to log in.
 Deleting a keypair does not automatically remove the authorized public key
 from already created instances. If you want to completely revoke a key you
 need to do so on every instance holding this key.
+
+### Obtaining a keypair's public key
+
+When creating a keypair via the exoscale console, the public key is not
+returned. In case you need the public key associated to your keypair, you can
+simply extract it from the private key using the `ssh-keygen -y` command:
+
+<pre>
+ssh-keygen -y
+Enter file in which the key is (/home/user/.ssh/id_rsa): /home/user/exoscale-keypair
+Enter passphrase:
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAA...
+</pre>
