@@ -7,7 +7,7 @@ tags: concepts, cloud
 exoscale is a public infrastructure-as-a-service provider and builds up on the
 following key concepts.
 
-### Security Groups
+## Security Groups
 
 **Security groups** are groups of firewall rules managed at the hypervisor
 level in order to restrict incoming and outgoing network trafic. When you
@@ -18,7 +18,7 @@ the default rules, which are:
 * All outgoing traffic is allowed
 * All incoming traffic is forbidden
 
-### Scaling
+## Scaling
 
 Scaling instances can be achieved simply using the "scale" button on an
 instance detail view. Scaling up and down is allowed: a *small* instance can
@@ -26,7 +26,7 @@ become a *large* one for a few hours and then be adjusted to a *medium* one.
 
 Note that you can only scale stopped instances.
 
-### User Data
+## User Data
 
 **User Data** is a commonly-used format to make an instance perform a set
 of actions while it boots. It consist of a file that is served to a booting
@@ -39,7 +39,7 @@ bootstrapping configuration management tools such as
 The [official documentation](https://cloudinit.readthedocs.org/en/latest/)
 explains the syntax and lists some examples.
 
-### API
+## API
 
 The API, or Application Programmable Interface, is a standardized access to
 our Cloud Platform. Without any development, it can be used to interact with
@@ -48,7 +48,7 @@ exoscale products in order to create, update or delete ressources.
 For more information, visit the [API
 reference](/documentation/open-cloud/reference/api_reference).
 
-### Tags
+## Tags
 
 Tags are key/values pairs associated with a ressource. They can be used to
 mark instances belonging to the same group or assign parameters to the

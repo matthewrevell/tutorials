@@ -4,7 +4,7 @@ date: 2014-01-16 09:28 +01:00
 category: Getting started
 tags: windows
 ---
-### Creating your instance
+## Creating your Windows instance
 
 * Go to the [instances view](/instances) and click the "add" button.
 * Enter the hostname of the instance and set its various properties (*Type*,
@@ -13,7 +13,7 @@ tags: windows
   50GB of disk and 1GB of RAM.
 * Click the "Create my instance" button.
 
-### Logging in to your instance
+## Logging in to your Windows instance
 
 First, make sure the default securitygroup allows <abbr title="Remote Desktop
 Protocol">RDP</abbr> access: from the instance list or detail view, click

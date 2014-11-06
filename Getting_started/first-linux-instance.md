@@ -4,7 +4,7 @@ date: 2014-01-16 09:28 +01:00
 category: Getting started
 tags: linux
 ---
-### Creating the instance
+## Creating the Linux instance
 
 * Go to the [instances view](/instances) and click the "add" button.
 * Enter the hostname of the instance and set its various properties (*Type*,
@@ -16,7 +16,7 @@ tags: linux
 Within a couple of seconds, your instance should appear in the instance list
 with the "Starting" status then switch to "Running" status.
 
-### Logging in to your instance
+## Logging in to your Linux instance
 
 First, make sure the default securitygroup allows SSH access: from the
 instance list or detail view, click on the security group name ("default" if

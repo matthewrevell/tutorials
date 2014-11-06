@@ -92,7 +92,7 @@ And connect to your guest instance:
 Note: default escape character is CTRL + ]
 
 
-### References:
+## References:
 
 * https://github.com/torvalds/linux/blob/master/Documentation/virtual/kvm/nested-vmx.txt
 

@@ -4,7 +4,7 @@ date: 2014-01-16 09:28 +01:00
 category: Web hosting
 tags: linux, cloudinit, wordpress
 ---
-__Originaly published on our blog__
+___Originaly published on our blog___
 
 Each programming language has its "Hello World" tutorial. In the cloud 
 provider business, the benchmarking is often done on a simple application deployment. 

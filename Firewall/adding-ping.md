@@ -5,7 +5,7 @@ category: Firewall
 tags: ping, network, ICMP, Firewall
 ---
 
-### Understanding ICMP
+## Understanding ICMP
 
 On top of TCP and UDP traffic, the Internet Protocol (IP) can also carry
 ICMP messages. 
@@ -16,7 +16,7 @@ to ping your instance.
 With Ping activated to an instance, it is then easier to enable it in your 
 preferred monitoring tool or service.
 
-### Adding ping to your instances
+## Adding ping to your instances
 
 To add ingress ping connectivity to your instance follow this procedure:
 
@@ -35,13 +35,13 @@ To add ingress ping connectivity to your instance follow this procedure:
 
 ![Addin ECHO ICMP Rule](adding-ping-2.png)
 
-#### Result:
+## Result:
 
 The resulting rules appears like this:
 
 ![Echo ICMP Rule](adding-ping-1.png)
 
-#### Reminder:
+## Reminder:
 
 * **Outbound traffic**: By default all outbound traffic is
   permitted, however as soon as you define an outbound rule, outbound traffic

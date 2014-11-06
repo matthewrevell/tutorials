@@ -5,26 +5,24 @@ category: Community
 tags: community, contribute, tutorials
 ---
 
-## Contributing is as easy as this:
+Contributing is as easy as this:
 
 * Fork this repo
 * Add your content
 * Submit a Pull request
 * Get credit when it is merged
 
-## How to
-
-### Prerequisite
+## Prerequisite
 
 To contribute tutorials to the exoscale user community you simply need a
 [Gihub](http://www.github.com) account.
 
-### Fork the repo
+## Fork the repo
 
 Go to [exoscale tutorials](https://github.com/exoscale/tutorials/) and 
 [FORK](https://github.com/exoscale/tutorials/fork) the repository.
 
-### Add content
+## Add content
 
 Select the corresponding category for your article from:
 
@@ -55,17 +53,17 @@ Then add your content in plain Markdown format. Follow documentation
 on [official Markdown](http://daringfireball.net/projects/markdown/syntax) syntax
 if you do not know about this format.
 
-#### Test the output
+### Test the output
 
 as Github also uses Markdown for displaying pages, just view your page in github 
 to get an idea of the output
 
-#### Add images
+### Add images
 
 to add images or screenshots to your article, just drop them in png format in the same folder as your article.
 please assess the rights on the image and/or confidential information on the screenshot before submitting.
 
-### Submit your article
+## Submit your article
 
 To submit your article open a pull request against the main tutorial 
 repository at [github](https://github.com/exoscale/tutorials/compare/)
