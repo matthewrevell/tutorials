@@ -13,7 +13,7 @@ In order to start using backup and restore of exoscale MANAGED CLOUD backup solu
     * You will receive by email a domain ID and a password
 
 * Install the required agents on your VMs and/or instances: refer to corresponding OS type documentation
-    * [Linux](/tutorial/update-avamar-client-Linux/)
+    * [Linux](/tutorial/update-avamar-client-linux/)
     * [Windows](/tutorial/update-avamar-client-windows/) 
 
     * You will go through the following steps during your agents installation: 
