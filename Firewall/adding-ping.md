@@ -46,7 +46,7 @@ The resulting rules appears like this:
 * **Outbound traffic**: By default all outbound traffic is
   permitted, however as soon as you define an outbound rule, outbound traffic
   is only allowed for the defined outbound rules. See [managing outbound
-  security rules](/documentation/open-cloud/tutorials/outbound-security-rules)
+  security rules](/tutorial/outbound-traffic-rules-accept-or-deny/)
   for more information.
 
 * **Allow Outbound Reply**: to allow outbound reply if the outbound traffic 
