@@ -19,14 +19,14 @@ plans is available at https://exoscale.ch/add-on/dns
 Once you have selected a bundle, you'll be presented with our interface
 within the exoscale portal.
 
-We're confident you'll our interface intuitive and won't get lost, if you
-do be sure to contact us through our support interface!
+We're confident you'll find our interface intuitive and won't get lost. If you
+do, be sure to contact us through our support interface!
 
 ## Registering domains
 
 Exoscale provides no way to register domains and assumes you already have
 bought domains from an existing registrar. Once you have configured your zone
-- either through our API or interface - you'll need to point the adjust the
+- either through our API or interface - you'll need to adjust the
 NS servers for your zone with your registrar.
 
 ## API access
@@ -42,15 +42,15 @@ There are two levels of authentication:
 - A per-zone authentication realm
 
 The API endpoint lives at https://api.exoscale.ch/dns and authentication
-is done through the use of the `X-DNS-Token` for the global realm or `X-DNS-Domain-Token`
-for the per-zone realm.
+is done through the use of the `X-DNS-Token` header for the global realm or
+`X-DNS-Domain-Token` header for the per-zone realm.
 
-The `X-DNS-Token` follows this simple layout: `API_KEY:SHA1(API_SECRET)`, your standard
-exoscale API Key, a colon and the hexadecimal representation of your API secret's SHA1.
+The `X-DNS-Token` header follows this simple layout: `API_KEY:API_SECRET`.
+Your standard exoscale API Key and secret, separated with a colon.
 
-The `X-DNS-Domain-Token` follows a similar layout: `API_KEY:ZONE_TOKEN`, instead of
-a fixed token, you'll be expected to supply the per-zone token retrieved via the
-`GET /domains` call.
+The `X-DNS-Domain-Token` follows a similar layout: `API_KEY:ZONE_TOKEN`.
+Instead of a fixed token, you'll be expected to supply the per-zone token
+retrieved via the `GET /domains` call.
 
 ### JSON API
 
@@ -58,9 +58,9 @@ a fixed token, you'll be expected to supply the per-zone token retrieved via the
 
 *GET /domains*
 
-list all domains
+List all domains
 
-example query:
+Example query:
 
 ```bash
 curl -H 'X-DNS-Token: <token>' \
@@ -68,7 +68,7 @@ curl -H 'X-DNS-Token: <token>' \
      https://api.exoscale.ch/dns/v1/domains
 ```
 
-example response:
+Example response:
 
 ```json
 [
@@ -117,12 +117,12 @@ example response:
 
 *POST /domains*
 
-Create a domain, expected input params:
+Create a domain. Expected input params:
 
 - `domain.name`: zone to host
 
 
-example query:
+Example query:
 
 ```bash
 curl -H 'X-DNS-Token: <token>' \
@@ -133,7 +133,7 @@ curl -H 'X-DNS-Token: <token>' \
      https://api.exoscale.ch/dns/v1/domains
 ```
 
-example response
+Example response:
 
 ```json
   {
@@ -160,16 +160,17 @@ example response
 
 *GET /domains/:domain*
 
-Retrieve a domain's details, by ID or name
+Retrieve a domain's details, by ID or name.
 
-example query:
+Example query:
 
 ```bash
 curl -H 'X-DNS-Token: <token>' \
      -H 'Accept: application/json' \
      https://api.exoscale.ch/dns/v1/domains/227
 ```
-example response:
+
+Example response:
 
 ```json
   {
@@ -198,7 +199,7 @@ example response:
 
 Delete a domain by ID or name.
 
-example query:
+Example query:
 
 ```bash
 curl -H 'X-DNS-Token: <token>' \
@@ -209,7 +210,7 @@ curl -H 'X-DNS-Token: <token>' \
 
 *POST /domains/:domain/token*
 
-Resets a domain's token
+Resets a domain's token.
 
 ```bash
 curl -H 'X-DNS-Token: <token>' \
@@ -218,7 +219,7 @@ curl -H 'X-DNS-Token: <token>' \
      https://api.exoscale.ch/dns/v1/domains/227/token
 ```
 
-example response:
+Example response:
 
 ```json
   {
@@ -253,15 +254,15 @@ Accepts the following params:
 - `name`: The name to search for
 - `type`: The record type to search for
 
-example query:
+Example query:
 
-~~~
+```
 curl  -H 'X-DNS-Token: <token>' \
       -H 'Accept: application/json' \
       https://api.exoscale.ch/dns/v1/domains/example.com/records
-~~~
+```
 
-~~~json
+```json
 [
   {
     "record": {
@@ -277,16 +278,15 @@ curl  -H 'X-DNS-Token: <token>' \
     }
   }
 ]
-~~~
+```
 
 *POST /domains/:domain/records*
 
-Create a new record.
-Accepts the following params:
+Create a new record. Accepts the following params:
 
 - `domain`: Domain name or id
 
-example query:
+Example query:
 
     curl  -H 'X-DNS-Token: <token>' \
           -H 'Accept: application/json' \
@@ -296,7 +296,7 @@ example query:
           https://api.exoscale.ch/dns/v1/domains/example.com/records
 
 
-example response:
+Example response:
 
 ```json
   {
@@ -316,19 +316,18 @@ example response:
 
 *GET /domains/:domain/records/:id*
 
-Retrieve record details.
-Accepts the following params:
+Retrieve record details. Accepts the following params:
 
 - `domain`: Domain name or ID
 - `id`: Record ID
 
-example query:
+Example query:
 
     curl  -H 'X-DNS-Token: <token>' \
           -H 'Accept: application/json' \
           https://api.exoscale.ch/dns/v1/domains/example.com/records/1
-          
-example response:
+
+Example response:
 
 ```json
   {
@@ -348,8 +347,7 @@ example response:
 
 *PUT /domains/:domain/records/:id*
 
-Modify a record's content.
-Accepts the following params:
+Modify a record's content. Accepts the following params:
 
 - `record.name`: record name
 - `record.content`: record content
@@ -357,7 +355,7 @@ Accepts the following params:
 - `record.prio`: record priority when applicable
 
 
-example query:
+Example query:
 
     curl  -H 'X-DNS-Token: <token>' \
           -H 'Accept: application/json' \
@@ -366,7 +364,7 @@ example query:
           -d '<json>' \
           https://api.exoscale.ch/dns/v1/domains/example.com/records/1
 
-example response:
+Example response:
 
 ```json
   {
@@ -386,12 +384,11 @@ example response:
 
 *DELETE /domain/:domain/records/:id*
 
-Delete a record
+Delete a record.
 
-example query:
+Example query:
 
     curl  -H 'X-DNS-Token: <token>' \
           -H 'Accept: application/json' \
           -X DELETE \
           https://api.exoscale.ch/dns/v1/domains/example.com/records/1
-
