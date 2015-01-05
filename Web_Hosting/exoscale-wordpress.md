@@ -18,7 +18,7 @@ The trick is to let Puppet, a configuration management tool, do the job. This ex
 deploy a clone of a Wordpress installation, but a fresh and latest copy of the famous blogging engine. 
 
 
-## Principles:
+## Principles
 
 This cookbook will leverage userdata extensibility of our Apache CloudStack powered Open Cloud offering and the features of cloud-init to 
 bootstrap a **fully fonctionnal Wordpress install which IS NOT a clone**.
@@ -33,7 +33,7 @@ Keep it mind that it is possible to go much further in automation deployment.
 Anyway, here is the usage guide from the README section of the project or see for yourself with this simple article: https://github.com/exoscale/exoscale-wordpress/ :
 
 
-## Usage guide:
+## Usage guide
 
 ### Start an instance
 
