@@ -35,13 +35,11 @@ To add ingress ping connectivity to your instance follow this procedure:
 
 ![Addin ECHO ICMP Rule](adding-ping-2.png)
 
-## Result:
-
 The resulting rules appears like this:
 
 ![Echo ICMP Rule](adding-ping-1.png)
 
-## Reminder:
+## Reminder
 
 * **Outbound traffic**: By default all outbound traffic is
   permitted, however as soon as you define an outbound rule, outbound traffic
