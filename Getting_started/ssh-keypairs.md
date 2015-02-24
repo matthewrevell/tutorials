@@ -24,7 +24,7 @@ Note that while you can have multiple keypairs in your account, the
 instance creation dialog only allows you to select one keypair. Fine key-based
 access control is the job of configuration management tools.
 
-Keypairs can be managed in two ways from the [keypairs view](https://portal.exoscale.ch/keypairs).
+Keypairs can be managed in two ways from the [keypairs view](https://portal.exoscale.ch/compute/keypairs).
 
 ## Importing a keypair
 
