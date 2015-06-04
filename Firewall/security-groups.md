@@ -9,17 +9,12 @@ tags: security groups, network, Firewall
 
 Security Groups provide a modular way to define and compose firewall rules.
 
-A security group is a set of firewall rules. Security groups are attached to
-instances at creation time. It is not possible to add a security group to an
-existing instance.
+A security group is a set of firewall rules. You can add several Security Groups
+to an instance during its creation, and add or remove groups later on in the
+instance detail page.
 
-Therefore it is important to carefully think about your security groups when
-setting up any infrastructure and find a balance between:
-
-* Having one security group per instance and manage firewall rules on a
-  per-instance basis
-* Having a single security group for all instances and ending up with no
-  granularity when it comes to network restrictions.
+It is important to carefully think about your security groups when
+setting up any infrastructure.
 
 A common practice is to identify *roles* in your infrastructure. For instance,
 an application infrastructure can be composed of:
