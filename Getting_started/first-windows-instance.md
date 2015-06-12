@@ -6,7 +6,8 @@ tags: windows
 ---
 ## Creating your Windows instance
 
-* Go to the [instances view](https://portal.exoscale.ch/instances) and click the "add" button.
+* Go to the [instances view](https://portal.exoscale.ch/compute/instances) 
+and click the "add" button.
 * Enter the hostname of the instance and set its various properties (*Type*,
   *Disk Size*).
 * Select a windows instance type. Note that Windows instances require at least
@@ -30,10 +31,9 @@ following values:
 * Start Port: 3389
 * End Port: 3389
 
-Once you have allowed traffic on port 22, simply point your remote desktop
+Once you have allowed traffic on port 3389, simply point your remote desktop
 client to the public IP address of your instance using the username
 "administrator".
 
-To find your instance password, look at the [jobs status](https://portal.exoscale.ch/jobs): "instance
-creation" jobs have an additional button next to their status. Click on the
-button to open a popover showing the instance password.
+To find your instance password, look at the detailed instance page.
+Click on the button to open a popover showing the instance password.

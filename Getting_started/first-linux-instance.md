@@ -6,7 +6,8 @@ tags: linux
 ---
 ## Creating the Linux instance
 
-* Go to the [instances view](https://portal.exoscale.ch/instances) and click the "add" button.
+* Go to the [instances view](https://portal.exoscale.ch/compute/instances) 
+and click the "add" button.
 * Enter the hostname of the instance and set its various properties (*Type*,
   *Disk Size*).
 * At first you can leave the *Keypair* and *Security Group* fields set to
@@ -36,9 +37,8 @@ Once you have allowed traffic on port 22, simply login with SSH as root user:
 
 `ssh root@<instance IP>`
 
-To find your instance password, look at the [jobs status](https://portal.exoscale.ch/jobs): "instance
-creation" jobs have an additional button next to their status. Click on the
-button to open a popover showing the instance password.
+To find your instance password, look at the detailed instance page at the password section
+Click on the button to open a popover showing the instance password.
 
 Per-instance passwords can be avoided with *keypairs*. [Read more about
 keypairs
