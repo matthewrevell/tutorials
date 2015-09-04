@@ -80,4 +80,4 @@ template which give the instance:
 [cloudinit]: https://coreos.com/os/docs/latest/cloud-config.html
 [add]: https://portal.exoscale.ch/compute/instances/add
 [portal]: https://portal.exoscale.ch
-[S3]: /tutorial/extend-owncloud-with-S3-compatible-storage/
+[S3]: /tutorial/extend-owncloud-with-s3-compatible-storage/
