@@ -47,7 +47,7 @@ by leveraging Docker.
             [Service]
             TimeoutStartSec=0
             ExecStartPre=/usr/bin/docker pull owncloud
-            ExecStart=/usr/bin/docker run -d -p 80:80 p 443:443 -v /var/owncloud/config:/var/www/html/config -v /var/owncloud/data:/var/www/html/data owncloud
+            ExecStart=/usr/bin/docker run -d -p 80:80 -p 443:443 -v /var/owncloud/config:/var/www/html/config -v /var/owncloud/data:/var/www/html/data owncloud
       update:
         reboot-strategy: reboot
     ```
