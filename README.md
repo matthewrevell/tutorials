@@ -1,18 +1,13 @@
-tutorials
-=========
+# Get Credit for your Tutorials: contribute and redeem Exoscale credit!
 
-Public tutorials for exoscale Swiss Cloud Services
-
-## Contributing is as easy as this:
+**Contributing is as easy as this:**
 
 * Fork this repo
 * Add your content
 * Submit a Pull request
 * Get credit when it is merged
 
-## How to
-
-### Prerequisite
+## Prerequisite
 
 To contribute tutorials to the exoscale user community you simply need a
 [Gihub](http://www.github.com) account.
@@ -57,8 +52,7 @@ if you do not know about this format.
 
 #### Test the output
 
-as Github also uses Markdown for displaying pages, just view your page in github 
-to get an idea of the output
+as Github also uses Markdown for displaying pages, just view your page in github to get an idea of the output
 
 #### Add images
 
