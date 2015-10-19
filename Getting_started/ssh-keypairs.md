@@ -20,45 +20,53 @@ Note that while you can have multiple keypairs in your account, the instance cre
 keypairs can be imported or created through the [keypairs view](https://portal.exoscale.ch/compute/keypairs).
 
 
-## Import an existing public key
+## Importing an existing public key
 
 Enter the [New SSH keypair](https://portal.exoscale.ch/compute/keypairs/add) screen and choose *IMPORT*. You can then paste in the content of your **public key**.
 
-## Create a new SSH keypair
+## Creating a new SSH keypair
 
 If you dont't have an SSH keypair you can choose to either create one through a simple command on your linux machine or to create one through the Exoscale console.
 
-### Create a new SSH keypair on your machine
+### Creating a new SSH keypair on your machine
 You can create a new SSH keypair with the following command:
 
 <pre>
 ssh-keygen -t rsa -b 4096 -C 'a-comment-to-identify-your-key'
 </pre>
 
-You will be asked for a name and location to save your new keypair (keyairs are usually stored in `~/.ssh`) and for a password to protect it. You can then copy and paste the content of your freshly created **public key** in the import text field of the [New SSH keypair](https://portal.exoscale.ch/compute/keypairs/add) screen.
+You will be asked for a name and location to save your new keypair (keyairs are usually stored in `~/.ssh`, and the main keypair for a user is usually called `id_rsa`) and for a password to protect it. You can then copy and paste the content of your freshly created **public key** in the import text field of the [New SSH keypair](https://portal.exoscale.ch/compute/keypairs/add) screen.
 
-### Create a new SSH keypair through the Exoscale console
+### Creating a new SSH keypair through the Exoscale console
 
 Access the [New SSH keypair](https://portal.exoscale.ch/compute/keypairs/add) screen and choose *CREATE*. through this screen you will create a new SSH keypair: the public key will be available through the interface to provision your instances, while the private key will be displayed to you at the end of the process.
 
-**Save the private key on you computer**. To do so copy the content of the private key and paste it in a text file called with the bare name of your key.
+#### Saving the newly created keypair to your computer
+Copy the content of the private key.
 
-SSH keys are usually stored in the `~/.ssh/` folder on your linux machine. If you wish you may extract the public key from the private key using the `ssh-keygen -y` command. The full process may be as following:
+SSH keys are usually stored in the `.ssh/` in your home directory. If you don't have the `.ssh` folder you may need to create it manually with the right permissions:
 
-<pre>
-touch /desired/destination/to/your/public/key
-chmod u=rw,go-rwx /desired/destination/to/your/public/key
-ssh-keygen -y > /desired/destination/to/your/public/key
-	Enter file in which the key is (/home/user/.ssh/id_rsa): /path/to/your/private/key
-</pre>
+    touch ~/.ssh && chmod u=rwx,go-rwx ~/.ssh
 
-## Provision an instance with a keypair
+You can then paste the content of your private key in a file inside your `.ssh/` folder. If you are not familiar with SSH we suggest you to name the file `id_rsa`. This file as well needs specific permissions. You can create a file with the right permissions with the following command: 
+
+	touch ~/.ssh/id_rsa && chmod u=rw,go-rwx ~/.ssh/id_rsa
+
+If you wish you may extract the public key from the private key using the `ssh-keygen -y` command:
+
+	ssh-keygen -y > ~/.ssh/id_rsa.pub
+
+Finally we strongly recommand you to protect your private key with a good password:
+
+	ssh-keygen -p
+
+## Provisioning an instance with a keypair
 
 When creating a new virtual machine, simply select the keypair you want to be associated to that instance and the person holding the corresponding private key will be able to log in via password-less SSH.
 
 **Plese be aware that deleting a public key in the Exoscale console does not automatically remove the authorized public key from an already created instance.** If you want to completely revoke a key, you need to do so manually by deleting the key on every instance holding it.
 
-## Connect to your newly created instance
+## Connecting to your newly created instance
 
 Once your new instance has started and is running, you can connect to it via SSH. How to use SSH is out of the scope of this documentation, but assuming the following conditions:
 	
