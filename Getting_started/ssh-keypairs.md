@@ -11,7 +11,7 @@ Public-Key authentication is both:
 
 * **Secure**: breaking an SSH key requires so much time and computational power that these sorts of attacks are not practical in the real world. SSH keys are much, much secure than even very strong passwords.
 
-* **Convenient**: instead of managing per-machine passwords or sharing them across your company, every physical person who needs access to your servers give you their public key. You can then setup granular access control by adding those keys only to the relevant machines. If you need to revoke someone's access, simply revoking his key prevents him from logging in without altering other people's workflow.
+* **Convenient**: instead of managing per-machine passwords or sharing them across your company, every physical person who needs access to your servers give you their public key. You can then setup granular access control by adding those keys only to the relevant machines. If you need to revoke someone's access, simply revoking their key prevents them from logging in without altering other people's workflow.
 
 Exoscale allows you to automatically provision linux machines with SSH public keys to use for Public-Key authentication with SSHv2.
 
@@ -46,19 +46,27 @@ Copy the content of the private key.
 
 SSH keys are usually stored in the `.ssh/` in your home directory. If you don't have the `.ssh` folder you may need to create it manually with the right permissions:
 
-    touch ~/.ssh && chmod u=rwx,go-rwx ~/.ssh
+<pre>
+touch ~/.ssh && chmod u=rwx,go-rwx ~/.ssh
+</pre>
 
 You can then paste the content of your private key in a file inside your `.ssh/` folder. If you are not familiar with SSH we suggest you to name the file `id_rsa`. This file as well needs specific permissions. You can create a file with the right permissions with the following command: 
 
-	touch ~/.ssh/id_rsa && chmod u=rw,go-rwx ~/.ssh/id_rsa
+<pre>
+touch ~/.ssh/id_rsa && chmod u=rw,go-rwx ~/.ssh/id_rsa
+</pre>
 
 If you wish you may extract the public key from the private key using the `ssh-keygen -y` command:
 
-	ssh-keygen -y > ~/.ssh/id_rsa.pub
+<pre>
+ssh-keygen -y > ~/.ssh/id_rsa.pub
+</pre>
 
 Finally we strongly recommand you to protect your private key with a good password:
 
+<pre>
 	ssh-keygen -p
+</pre>
 
 ## Provisioning an instance with a keypair
 
