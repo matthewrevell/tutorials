@@ -17,7 +17,7 @@ Exoscale allows you to automatically provision linux machines with SSH public ke
 
 Note that while you can have multiple keypairs in your account, the instance creation dialog only allows you to select one keypair. Once the instance is created, you may allow additional public keys and set up more detailed access control using traditional means.
 
-keypairs can be imported or created through the [keypairs view](https://portal.exoscale.ch/compute/keypairs).
+Keypairs can be imported or created through the [keypairs view](https://portal.exoscale.ch/compute/keypairs).
 
 
 ## Importing an existing public key
