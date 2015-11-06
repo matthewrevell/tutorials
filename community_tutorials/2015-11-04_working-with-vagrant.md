@@ -23,7 +23,8 @@ than a few Swiss Francs.
 Vagrant is a tool for building complete development environments. With an
 easy-to-use workflow and focus on automation, Vagrant lowers development
 environment setup time, increases development/production parity, and makes
-the "works on my machine" excuse a relic of the past. (_from_ [vagrantup.com](https://www.vagrantup.com/about.html))
+the "works on my machine" excuse a relic of the past.
+(_from_ [vagrantup.com](https://www.vagrantup.com/about.html))
 
 Vagrant uses a 'box' as a base for your servers. You can download an existing
 box, and use it for several configurations. Or you can make your own, this is
@@ -89,8 +90,9 @@ We will work with Ubuntu Linux, and we don't need a lot of disk for this
 tutorial. The minimum amount of disk is 10GB on Exoscale. So in the list of
 template, we can find the link to an Ubuntu Linux box, with 10GB disk.
 
-Let add the `Linux Ubuntu 15.04 64-bit 10G Disk` box to our installation of
-Vagrant.
+Let add an Ubuntu Linux box.
+We will choose `Linux Ubuntu 15.04 64-bit 10G Disk` but you can choose any
+Ubuntu box.
 
 First, download the box: either click on the link from your browser, or copy
 the link and use `wget` to download it.
@@ -127,9 +129,22 @@ forget to change the name of the box!
 In order to "talk" to Exoscale Open Compute, Vagrant needs the
 [vagrant-cloudstack plugin](https://github.com/schubergphilis/vagrant-cloudstack)
 
-Installing Vagrant plugins is very easy: `vagrant plugin add <plugin name>`
+Installing Vagrant plugins is very easy: `vagrant plugin install <plugin name>`
 
-Let's install our Cloudstack plugin
+Let's install our Cloudstack plugin:
+
+```
+$ vagrant plugin install vagrant-cloudstack --plugin-version 1.0.0
+Installing the 'vagrant-cloudstack' plugin. This can take a few minutes...
+Installed the plugin 'vagrant-cloudstack (1.0.0)'!
+```
+
+The plugin version here is 1.0.0 and might change as the plugin is being
+developed. To install the latest version, simply omit the`--plugin-version`
+parameter.
+
+This plugin allows you to use Exoscale's boxes and deploy Instances in
+Exoscale Compute.
 
 ## Deploying an Instance
 
@@ -154,8 +169,225 @@ Vagrant.configure(2) do |config|
 end
 ```
 
+Right now, all Vagrant knows is what box to use, but we need to specify the
+provider we want to use.
+
+Edit the Vagrantfile so it looks like this:
+
+```ruby
+Vagrant.configure(2) do |config|
+  config.vm.box = "exoscale-ubuntu-1504-10GB"
+  config.vm.provider :cloudstack do |cloudstack, override|
+    # provider's details
+  end
+end
+```
+
+Next, we want to authenticate so we will provide our API key and secret.
+
+```ruby
+Vagrant.configure(2) do |config|
+  config.vm.box = "exoscale-ubuntu-1504-10GB"
+  config.vm.provider :cloudstack do |cloudstack, override|
+    cloudstack.api_key    = "AAAA_YOUR_API_KEY"
+    cloudstack.secret_key = "BBBB_YOUR_SECRET_KEY"
+  end
+end
+```
+
+The box we chose only contains OS and Disk information. We need to add CPU
+and memory. This is the Service Offering Name: Micro, Tiny, Small, Medium,
+Large, Extra-large, Huge.
+
+Choose one service offering name and update your Vagrantfile:
+
+```ruby
+Vagrant.configure(2) do |config|
+  config.vm.box = "exoscale-ubuntu-1504-10GB"
+  config.vm.provider :cloudstack do |cloudstack, override|
+    cloudstack.api_key    = "AAAA_YOUR_API_KEY"
+    cloudstack.secret_key = "BBBB_YOUR_SECRET_KEY"
+    cloudstack.service_offering_name = "Micro"
+  end
+end
+```
+
+In 8 lines of configuration, we are telling Vagrant to deploy an Ubuntu Linux
+Micro instance (1cpu with 512MB ram) with 10GB disk, on Exoscale Compute.
+We're missing the Security Group(s) for this Instance and the SSH keypair we
+want to use when connecting to the Instance. That's two more lines of configuration.
+
+```ruby
+Vagrant.configure(2) do |config|
+  config.vm.box = "exoscale-ubuntu-1504-10GB"
+  config.vm.provider :cloudstack do |cloudstack, override|
+    cloudstack.api_key    = "AAAA_YOUR_API_KEY"
+    cloudstack.secret_key = "BBBB_YOUR_SECRET_KEY"
+    cloudstack.service_offering_name = "Micro"
+    cloudstack.security_group_names = ['default']
+    cloudstack.keypair = "name_of_your_keypair"
+  end
+end
+```
+
+As we've named the SSH keypair we want to use, we need to point Vagrant to our
+private key.
+
+```ruby
+Vagrant.configure(2) do |config|
+  config.vm.box = "exoscale-ubuntu-1504-10GB"
+  config.vm.provider :cloudstack do |cloudstack, override|
+    cloudstack.api_key    = "AAAA_YOUR_API_KEY"
+    cloudstack.secret_key = "BBBB_YOUR_SECRET_KEY"
+    cloudstack.service_offering_name = "Micro"
+    cloudstack.security_group_names = ['default']
+    cloudstack.keypair = "name_of_your_keypair"
+    cloudstack.ssh_key = "~/.ssh/id_rsa"
+  end
+end
+```
+
+And finally, we will log in as 'root' so we need to tell this to Vagrant.
+
+```ruby
+Vagrant.configure(2) do |config|
+  config.vm.box = "exoscale-ubuntu-1504-10GB"
+  config.vm.provider :cloudstack do |cloudstack, override|
+    cloudstack.api_key    = "AAAA_YOUR_API_KEY"
+    cloudstack.secret_key = "BBBB_YOUR_SECRET_KEY"
+    cloudstack.service_offering_name = "Micro"
+    cloudstack.security_group_names = ['default']
+    cloudstack.keypair = "name_of_your_keypair"
+    cloudstack.ssh_key = "~/.ssh/id_rsa"
+    cloudstack.ssh_user = "root"
+  end
+end
+```
+
+When deplying our Instance, Vagrant will "talk" to Exoscale Compute through the
+vagrant-cloudstack plugin, start a new instance with the parameters we set,
+and will attempt to connect via SSH... so we need to allow the incoming connections on port 22!
+[Add a rule to the default Security Group](https://community.exoscale.ch/documentation/compute/security-groups/#a-simple-example).
+
+Now let's **deploy** our new Instance:
+
+```
+$ vagrant up --provider=cloudstack
+Bringing machine 'default' up with 'cloudstack' provider...
+...
+==> default: Machine is booted and ready for use!
+...
+```
+
+When you get your prompt back, try `vagrant ssh` to connect to your machine.
+Run a few command like `ifconfig` or `cat /proc/cpuinfo` to verify that you're
+connected to an Exoscale Instance... Type `exit` to disconnect.
+
+To avoid unnecessary costs, destroy the Instance. We can create it again when we
+need it again.
+
+```
+$ vagrant destroy -f
+==> default: Disabling Static NAT ...
+==> default: Deleting the port forwarding rule ...
+==> default: Deleting the firewall rule ...
+==> default: Terminating the instance...
+==> default: Waiting for instance to be deleted
+```
+
+In case you have an error message "No host IP was given to the Vagrant core NFS
+helper. This is an internal error that should be reported as a bug.", add the
+following line in the `config.vm.provider` block:
+`override.nfs.functional = false`
+
+## Provisioning
+
+As we said we want our machine to act as a web server, we need to install
+Apache or Nginx or any other web server.
+Normally, we would connect to the machine, run `apt-get install nginx` and our
+web server would be ready.
+
+With Vagrant we will simply add the following line under the `config.vm.provider` block:
+`config.vm.provision "shell", inline: "apt-get -y install nginx"`
+
+You Vagrantfile looks like this:
+
+```ruby
+Vagrant.configure(2) do |config|
+  config.vm.box = "exoscale-ubuntu-1504-10GB"
+  config.vm.provider :cloudstack do |cloudstack, override|
+    cloudstack.api_key    = "AAAA_YOUR_API_KEY"
+    cloudstack.secret_key = "BBBB_YOUR_SECRET_KEY"
+    cloudstack.service_offering_name = "Micro"
+    cloudstack.security_group_names = ['default']
+    cloudstack.keypair = "name_of_your_keypair"
+    cloudstack.ssh_key = "~/.ssh/id_rsa"
+    cloudstack.ssh_user = "root"
+  end
+  config.vm.provision "shell", inline: "apt-get -y install nginx"
+end
+```
+
+Add a rule for incoming connection to port 80 from any IP on your default
+Security Group and then deploy your Instance
+
+```bash
+$ vagrant up --provider=cloudstack
+```
+
+Find the IP of your Instance, either by:
+
+* Connecting to the web interface
+* SSH'ing to your Instance: `vagrant ssh` and run `ifconfig`
+* Run `ifconfig` over ssh: `vagrant ssh -c ifconfig`
+* Displaying the SSH configuration: `vagrant ssh-config`
+
+Go to this IP on your browser.
+If you see "Welcome to nginx on Ubuntu!", congratulations!
+Your (very basic) web server is up and running.
 
 
 ## Deploying multiple Instances
 
+Let's make things a bit more interesting: from our Vagrantfile, start
+1 Instance with Nginx, 1 Instance with Apache
+
+We only need to replace the line
+`config.vm.provision "shell", inline: "apt-get -y install nginx"` with the
+definition of our Instances:
+
+```bash
+config.vm.define 'web-nginx' do |machine|
+  machine.vm.provision :shell, inline: "apt-get -y install nginx"
+end
+
+config.vm.define 'web-apache' do |machine|
+  machine.vm.provision :shell, inline: "apt-get -y install apache"
+end
+```
+
+Run `vagrant up --provider=cloudstack` and you should see 2 Instances being
+deployed.
+
 ## Going further
+
+**Create the security group and rules on-the-fly**:
+
+Here's an example of Security Group that will be created when runing `vagrant up`
+
+```ruby
+cloudstack.security_groups = [
+      {
+        :name         => "Awesome_security_group",
+        :description  => "Created from the Vagrantfile",
+        :rules => [
+          {:type => "ingress", :protocol => "TCP", :startport => 22, :endport => 22, :cidrlist => "0.0.0.0/0"},
+          {:type => "ingress", :protocol => "TCP", :startport => 80, :endport => 80, :cidrlist => "0.0.0.0/0"}
+        ]
+      }
+    ]
+```
+
+You need to remove the list of Security Groups already defined.
+
+[*Vagrantfile*](https://gist.github.com/nicolasbrechet/dab06bbe9e9ac642085c)
