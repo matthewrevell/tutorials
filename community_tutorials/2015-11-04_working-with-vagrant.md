@@ -91,7 +91,7 @@ We will work with Ubuntu Linux, and we don't need a lot of disk for this
 tutorial. The minimum amount of disk is 10GB on Exoscale. So in the list of
 template, we can find the link to an Ubuntu Linux box, with 10GB disk.
 
-Let add an Ubuntu Linux box.
+Let's add an Ubuntu Linux box.
 We will choose `Linux Ubuntu 15.04 64-bit 10G Disk` but you can choose any
 Ubuntu box.
 
@@ -104,8 +104,8 @@ the link and use `wget` to download it.
 wget "https://github.com/exoscale/vagrant-exoscale-boxes/raw/master/exoscale-boxes/Linux-Ubuntu-15.04-64-bit-10G-Disk-(2015-04-22-c2595b).box"
 ```
 
-Once the box is downloaded, you can 'add' it, to let Vagrant know it can use a
-box. As we're adding a box from a local file, we have to name it.
+Once the file is downloaded, you can 'add' it, to let Vagrant know it can use it
+as box. As we're adding a box from a local file, we have to name it.
 The syntax is `vagrant box add <box location> --name <box name>`
 
 ```
