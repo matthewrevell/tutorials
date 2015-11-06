@@ -1,7 +1,8 @@
 ---
 title: "Vagrant and Exoscale"
 slug: "vagrant-exoscale"
-date: 2015-11-03 20:00 +01:00
+meta-desc: "With Vagrant, you can easily deploy and provision virtual machines. Discover how to use Vagrant with Exoscale, and deploy multiple Instances in a few seconds."
+date: 2015-11-06 12:00 +0100
 authors: nicolasbrechet
 tags: "vagrant"
 ---
@@ -369,6 +370,75 @@ end
 Run `vagrant up --provider=cloudstack` and you should see 2 Instances being
 deployed.
 
+This is not really ideal though, as each Instance will share the same provider's
+configuration:
+* Same box so same Operting System and same disk
+* Same Service Offering, so same CPU and RAM
+* Same security Group...
+
+Let's tweak our Vagrantfile so we're able to choose different parameters for
+each Instance.
+
+```bash
+Vagrant.configure(2) do |config|
+  config.vm.define 'web-nginx' do |machine|
+    machine.vm.box = "exoscale-ubuntu-1504-10GB"
+    machine.vm.provider :cloudstack do |cloudstack, override|
+      cloudstack.api_key    = "AAAA_YOUR_API_KEY"
+      cloudstack.secret_key = "BBBB_YOUR_SECRET_KEY"
+      cloudstack.service_offering_name = "Micro"
+      cloudstack.security_group_names = ['default']
+      cloudstack.keypair = "name_of_your_keypair"
+      cloudstack.ssh_key = "~/.ssh/id_rsa"
+      cloudstack.ssh_user = "root"
+    end
+
+    machine.vm.provision :shell, inline: "apt-get -y install nginx"
+  end
+end
+```
+
+We can duplicate the block `config.vm.define` for each additional Instance and
+change parameters according to your needs. Don't forget to `vagrant add` the
+boxes you want to use.
+
+Below is an example of an Micro Instance with ubuntu 15.04 starting Nginx, and
+a Tiny Instance with Ubuntu 12.04 starting Apache 2...
+
+```bash
+Vagrant.configure(2) do |config|
+  config.vm.define 'web-nginx-1504' do |machine|
+    machine.vm.box = "exoscale-ubuntu-1504-10GB"
+    machine.vm.provider :cloudstack do |cloudstack, override|
+      cloudstack.api_key    = "AAAA_YOUR_API_KEY"
+      cloudstack.secret_key = "BBBB_YOUR_SECRET_KEY"
+      cloudstack.service_offering_name = "Micro"
+      cloudstack.security_group_names = ['default']
+      cloudstack.keypair = "name_of_your_keypair"
+      cloudstack.ssh_key = "~/.ssh/id_rsa"
+      cloudstack.ssh_user = "root"
+    end
+
+    machine.vm.provision :shell, inline: "apt-get -y install nginx"
+  end
+
+  config.vm.define 'web-apache-1204' do |machine|
+    machine.vm.box = "exoscale-ubuntu-1204-10GB"
+    machine.vm.provider :cloudstack do |cloudstack, override|
+      cloudstack.api_key    = "AAAA_YOUR_API_KEY"
+      cloudstack.secret_key = "BBBB_YOUR_SECRET_KEY"
+      cloudstack.service_offering_name = "Tiny"
+      cloudstack.security_group_names = ['default']
+      cloudstack.keypair = "name_of_your_keypair"
+      cloudstack.ssh_key = "~/.ssh/id_rsa"
+      cloudstack.ssh_user = "root"
+    end
+
+    machine.vm.provision :shell, inline: "apt-get -y install apache2"
+  end
+end
+```
+
 ## Going further
 
 **Create the security group and rules on-the-fly**:
@@ -389,5 +459,3 @@ cloudstack.security_groups = [
 ```
 
 You need to remove the list of Security Groups already defined.
-
-[*Vagrantfile*](https://gist.github.com/nicolasbrechet/dab06bbe9e9ac642085c)
