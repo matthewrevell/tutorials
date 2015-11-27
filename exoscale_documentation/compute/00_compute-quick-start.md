@@ -16,7 +16,7 @@ Here is a detailed tutorial on
 [setting up SSH Keypairs](/documentation/compute/ssh-keypairs/).
 
 You also need to have
-[enough credit](/documentation/platform/operate-on-platform/) to start and run your
+[enough credit](/documentation/platform/quick-start/#minimum-credit) to start and run your
 Instance.
 
 ## Create your Instance

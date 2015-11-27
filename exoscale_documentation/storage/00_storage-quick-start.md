@@ -25,7 +25,7 @@ SOS is S3-compatible: this means it works with most object storage clients and
 provides library access from a host of languages. You can drop-in from other
 services and you don't have to fear to be locked in. Most of the time a simple change of API credentials and endpoint allows to switch to our service.
 
-S3-compatibility is achieved through Pithos, an open-source frontend for storing files in a Cassandra cluster. if you are interested, we have [more information on the SOS architecture](/documentation/platform/platform-description).
+S3-compatibility is achieved through Pithos, an open-source frontend for storing files in a Cassandra cluster.
 
 Here are a few clients and tools that interact well:
 
