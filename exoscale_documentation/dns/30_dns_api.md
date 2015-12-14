@@ -134,14 +134,14 @@ Example response:
 
 *GET /domains/:domain*
 
-Retrieve a domain's details, by ID or name.
+Retrieve a domain's details.
 
 Example query:
 
 ```bash
 curl -H 'X-DNS-Token: <token>' \
      -H 'Accept: application/json' \
-     https://api.exoscale.ch/dns/v1/domains/227
+     https://api.exoscale.ch/dns/v1/domains/example.com
 ```
 
 Example response:
@@ -171,7 +171,7 @@ Example response:
 
 *DELETE /domains/:domain*
 
-Delete a domain by ID or name.
+Delete a domain.
 
 Example query:
 
@@ -179,7 +179,7 @@ Example query:
 curl -H 'X-DNS-Token: <token>' \
      -H 'Accept: application/json' \
      -X DELETE \
-     https://api.exoscale.ch/dns/v1/domains/227
+     https://api.exoscale.ch/dns/v1/domains/example.com
 ```
 
 *POST /domains/:domain/token*
@@ -190,7 +190,7 @@ Resets a domain's token.
 curl -H 'X-DNS-Token: <token>' \
      -H 'Accept: application/json' \
      -X POST \
-     https://api.exoscale.ch/dns/v1/domains/227/token
+     https://api.exoscale.ch/dns/v1/domains/example.com/token
 ```
 
 Example response:
