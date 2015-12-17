@@ -21,7 +21,7 @@ You can find everything that can be done with User Data and Cloud-Init in the
 
 ## Example: script
 
-Let's install `screen` on an Ubuntu Instance using Apt after having 
+Let's install `screen` and `htop` on an Ubuntu Instance using Apt after having 
 upgraded all packages on an Debian/Ubuntu system.   
 
 Add the following to the `User Data` field to install the `screen` package:
@@ -30,9 +30,9 @@ Add the following to the `User Data` field to install the `screen` package:
 #cloud-config
 runcmd:
     - apt-get --yes upgrade
-    - apt-get --yes install screen
+    - apt-get --yes install screen htop
 ```
-Note that Cloud Init has prebuild directives for many items. Therefore,
+*Note:* Cloud-Init has pre-built directives for many items. Therefore,
 the previous scripts launched as command lines could be achieved with:
 
 ```
@@ -65,20 +65,18 @@ integrate in scripts for example or configuration management tools.
 First identify the IP address of the meta data server:
 
 * for Debian/Ubuntu:
-
-    cat /var/lib/dhcp/dhclient.eth0.leases | grep dhcp-server-identifier | tail -1
+`cat /var/lib/dhcp/dhclient.eth0.leases | grep dhcp-server-identifier | tail -1`
 
 * for CentOS based:
-
-    cat /var/lib/dhclient/dhclient--eth0.lease | grep dhcp-server-identifier | tail -1
+`cat /var/lib/dhclient/dhclient--eth0.lease | grep dhcp-server-identifier | tail -1`
 
 Then you can access:
 
 * User Data (the cloud-config contents)
-
-    curl http://<IP ADDRESS>/latest/userdata
+`curl http://<IP ADDRESS>/latest/userdata`
 
 * Meta Data, such as instance size or IP address
-
-    curl http://<IP ADDRESS>/latest/metadata
-    curl http://<IP ADDRESS>/latest/metadata/public-ipv4
+```
+curl http://<IP ADDRESS>/latest/metadata
+curl http://<IP ADDRESS>/latest/metadata/public-ipv4
+```
