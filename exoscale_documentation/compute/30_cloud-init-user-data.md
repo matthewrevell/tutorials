@@ -65,17 +65,27 @@ integrate in scripts for example or configuration management tools.
 First identify the IP address of the meta data server:
 
 * for Debian/Ubuntu:
-`cat /var/lib/dhcp/dhclient.eth0.leases | grep dhcp-server-identifier | tail -1`
+
+```
+cat /var/lib/dhcp/dhclient.eth0.leases | grep dhcp-server-identifier | tail -1
+```
 
 * for CentOS based:
-`cat /var/lib/dhclient/dhclient--eth0.lease | grep dhcp-server-identifier | tail -1`
+
+```
+cat /var/lib/dhclient/dhclient--eth0.lease | grep dhcp-server-identifier | tail -1
+```
 
 Then you can access:
 
 * User Data (the cloud-config contents)
-`curl http://<IP ADDRESS>/latest/userdata`
+
+```
+curl http://<IP ADDRESS>/latest/userdata
+```
 
 * Meta Data, such as instance size or IP address
+
 ```
 curl http://<IP ADDRESS>/latest/metadata
 curl http://<IP ADDRESS>/latest/metadata/public-ipv4
