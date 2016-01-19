@@ -1,6 +1,6 @@
 ---
 title: "Snapshots"
-slug: "Snapshots"
+slug: "snapshots"
 meta_desc: "Find out how to create and delete Snapshots to get point-in-time recovery for your Exoscale Compute Instances, straight from our intuitive web interface"
 tags: "compute"
 ---
