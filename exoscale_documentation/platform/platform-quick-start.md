@@ -75,7 +75,7 @@ From this menu, you can update your profile, setup
 renew your API keys, and change your account preferences.
 
 In the sub-menu, you can access your credit and subscriptions, check your
-[billing information](/documentation/platform/services-billing), your invoices and
+[billing information](/documentation/platform/billing), your invoices and
 your [organizations](/documentation/platform/organizations)
 
 ## Support Menu

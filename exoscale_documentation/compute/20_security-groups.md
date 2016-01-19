@@ -168,7 +168,7 @@ and resources about them:
 
 * How to [modify Security Groups attributed to an Instance](https://www.exoscale.ch/syslog/2015/06/22/changing-security-groups/) (from our blog)
 
-* Another simple example on [how to set up PING](/documentation/compute/security-groups-recipes/), and understanding the ICMP protocol
+* Another simple example on [how to set up PING](/documentation/compute/firewalling-examples/#adding-ping-to-your-instances), and understanding the ICMP protocol
 
 * A detailed explanation about [outbound traffic rules](/documentation/compute/outbound-security-rules/)
 

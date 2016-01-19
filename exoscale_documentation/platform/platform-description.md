@@ -48,8 +48,9 @@ Add-Ons like MySQL, Backup.
 ### DNS
 When deploying an Instance or an Application, you want it to be accessible,
 in a simple and reliable way. Our DNS service allows you to control your
-Domain Name, its records, [from our interface](/documentation/dns/recipes),
-and also [from the API](/documentation/dns/api-recipes).
+Domain Name, its records,
+[from our interface](/documentation/dns/configuration-examples), and also
+[from the API](/documentation/dns/api-examples).
 
 [Start managing my domain](/documentation/dns/quick-start)
 
@@ -62,7 +63,7 @@ Here are a few examples of how our customers use our platform.
 * [Backup a PostgreSQL instance](/tutorials/)
 * [Deploy a Python application](/tutorials/)
 
-[Get started on Exoscale!](/documentation/platform/operate-on-platform)
+[Get started on Exoscale!](/documentation/platform/quick-start)
 
 ## More details on technologies
 

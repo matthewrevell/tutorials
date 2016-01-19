@@ -5,7 +5,7 @@ meta_desc: "Move up as a team: a personal project can grow up to an organization
 tags: "compute,organizations"
 ---
 
-Once you've joined an [Organization](/documentation/organizations/), you have
+Once you've joined an [Organization](/documentation/platform/organizations/), you have
 the possibility to move an Instance from your account to this Organization.
 
 ## Requirements

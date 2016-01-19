@@ -32,8 +32,8 @@ NS servers for your Zone with your registrar.
 
 You have two ways to configure your Zone:
 
-* [using the web interface](/documentation/dns/configuration-recipes)
-* [using the API](/documentation/dns/api-recipes)
+* [using the web interface](/documentation/dns/configuration-examples)
+* [using the API](/documentation/dns/api-examples)
 
 ## Subscription upgrade and downgrade
 
