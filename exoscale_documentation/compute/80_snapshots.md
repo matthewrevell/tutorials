@@ -28,3 +28,5 @@ click on `Delete Snapshot` to delete it.
 * Only one action is permitted at a time. For example, when a Snapshot is
   being destroyed, you cannot create a new Snapshot.
 * Snapshots cannot be named at the moment, they are identified by a UUID.
+* During beta stage Snapshots will not be billed. Once definitevely released they will be billed by their effective size.
+
