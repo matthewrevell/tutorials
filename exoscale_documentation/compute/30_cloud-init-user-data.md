@@ -81,12 +81,12 @@ Then you can access:
 * User Data (the cloud-config contents)
 
 ```
-curl http://<IP ADDRESS>/latest/userdata
+curl http://<IP ADDRESS>/latest/user-data
 ```
 
 * Meta Data, such as instance size or IP address
 
 ```
-curl http://<IP ADDRESS>/latest/metadata
-curl http://<IP ADDRESS>/latest/metadata/public-ipv4
+curl http://<IP ADDRESS>/latest/meta-data
+curl http://<IP ADDRESS>/latest/meta-data/public-ipv4
 ```
