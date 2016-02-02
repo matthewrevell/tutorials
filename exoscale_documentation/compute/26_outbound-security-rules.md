@@ -13,6 +13,8 @@ rules must be added:
 
 * Destination subnet `185.19.28.0/22`, start port: 80, end port: 80.
 * Destination subnet `185.19.28.0/22`, start port: 8080, end port: 8080.
+* Destination subnet `159.100.240.0/20`, start port: 80, end port: 80.
+* Destination subnet `159.100.240.0/20`, start port: 8080, end port: 8080.
 
 The screenshot below shows a properly configured security group:
 
