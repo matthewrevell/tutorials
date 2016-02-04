@@ -14,7 +14,7 @@ Start by retrieveing the necessary API keys in your account screen and set the c
 
 You need to download the docker-machine binary corresponfing to your local computer architecture. For example, on OS X:
 
-    $ curl -sOL https://github.com/docker/machine/releases/down- load/v0.5.6/ \
+    $ curl -sOL https://github.com/docker/machine/releases/download/v0.5.6/ \
     docker-machine_darwin-amd64
     $ mv docker-machine_darwin-amd64 docker-machine
     $ chmod +x docker-machine
