@@ -77,7 +77,3 @@ The official documentation gives you all the details and the options of this wor
 [Exoscale driver documentation](https://docs.docker.com/machine/drivers/exoscale/)
 
 You can also have a look at our video tutorial on how to deploy a [Docker Swarm with Docker Machine](https://www.exoscale.ch/syslog/2015/06/23/deploy-docker-swarm/) which extends those concepts further.
-
-And dont't forget to [get a free copy of the O'Reilly Docker in the Cloud book](https://www.exoscale.ch/docker-in-the-cloud/) by Sébastien Goasguen!
-
-
