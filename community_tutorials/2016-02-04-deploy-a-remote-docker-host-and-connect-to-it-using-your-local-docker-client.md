@@ -10,7 +10,7 @@ You can use Docker Machine to easily deploy an Instance with a running Docker Ho
 
 ## Spawn an Instance with a running Docker Host
 
-Start by retrieveing the necessary API keys in your account screen and set the corresponding EXOSCALE_API_KEY and EXOSCALE_API_SECRET environment variables.
+Start by retrieveing the necessary API keys in your account screen and set the corresponding `EXOSCALE_API_KEY` and `EXOSCALE_API_SECRET` environment variables.
 
 You need to download the docker-machine binary corresponfing to your local computer architecture. For example, on OS X:
 
