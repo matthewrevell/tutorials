@@ -10,24 +10,28 @@ You can use Docker Machine to easily deploy an Instance with a running Docker Ho
 
 ## Spawn an Instance with a running Docker Host
 
-Start by retrieveing the necessary API keys in your account screen and set the corresponding `EXOSCALE_API_KEY` and `EXOSCALE_API_SECRET` environment variables.
+Start by retrieveing the necessary API keys in [your account screen](https://portal.exoscale.ch/account/profile/api) and set the corresponding `EXOSCALE_API_KEY` and `EXOSCALE_API_SECRET` environment variables:
 
-You need to download the docker-machine binary corresponfing to your local computer architecture. For example, on OS X:
+    export EXOSCALE_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    export EXOSCALE_API_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-    $ curl -sOL https://github.com/docker/machine/releases/download/v0.5.6/ \
-    docker-machine_darwin-amd64
-    $ mv docker-machine_darwin-amd64 docker-machine
+You need to download the docker-machine binary corresponfing to your local computer architecture. For example:
+
+    $ curl -L https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-`uname -s`-`uname -m` > \
+         docker-machine
     $ chmod +x docker-machine
     $ ./docker-machine --version
-      docker-machine version 0.5.6
+      docker-machine version 0.6.0, build e27fb87
 
 If everything looks good you can now deploy your Docker host. Machine will automatically set up a new SSH key for you and deploy a new Instance.
 You can specify the desired instance size via command line options or environment variables. You'll find a detail reference on the [official documenation of the Exoscale provider for docker-machine](https://docs.docker.com/machine/drivers/exoscale/).
 
     $ ./docker-machine create -d exoscale foobar
-    Creating SSH key...
-    Creating instance...
-    To see how to connect Docker to this machine, run: docker-machine env foobar
+    Running pre-create checks...
+    Creating machine...
+    [...]
+    Docker is up and running!
+    To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: ./docker-machine env foobar
 
 You can verify that everything worked out smoothly having a peek in the  console: you should find your new Instance and a new SSH key.
 
@@ -35,7 +39,7 @@ To configure your local Docker client to use this remote Docker host, simply exe
 
     $ ./docker-machine env foobar
       export DOCKER_TLS_VERIFY="1"
-      export DOCKER_HOST="tcp://104.131.92.15:2376"
+      export DOCKER_HOST="tcp://185.19.28.223:2376"
       export DOCKER_CERT_PATH="/Users/sebastiengoasguen/.docker/ machine/machines/foobar"
       export DOCKER_MACHINE_NAME="foobar"
       # Run this command to configure your shell:
@@ -57,18 +61,17 @@ Docker Machine offers you also basic management capabilities: start, stop, rm, a
 For instance, you can list the machine you created previously, obtain its IP address, and connect to it via SSH:
 
     $ ./docker-machine ls
-    NAME  ACTIVE  DRIVER    STATE   URL
-    foobar  *   exoscale  Running   tcp://185.19.28.223:2376
+    NAME  ACTIVE  DRIVER    STATE   URL                      SWARM   DOCKER    ERRORS
+    foobar  *   exoscale  Running   tcp://185.19.28.223:2376         v1.10.2
 
     $ ./docker-machine ip foobar
     185.19.28.223
 
     $ ./docker-machine ssh foobar
-    Welcome to Ubuntu 15.10 (GNU/Linux 3.13.0-57-generic x86_64)
+    Welcome to Ubuntu 15.10 (GNU/Linux 4.2.0-16-generic x86_64)
     ...
 
-    Last login: Mon Mar 16 09:02:13 2015 from ...
-    root@foobar:~#
+    ubuntu@foobar:~$
 
 
 ## Where to go from there
