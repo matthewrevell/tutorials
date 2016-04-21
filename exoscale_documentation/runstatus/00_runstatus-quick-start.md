@@ -1,109 +1,150 @@
 ---
-title: "Runstatus Quick Start"
+title: "Runstatus quick start"
 slug: "quick-start"
-meta_desc: "Runstatus is a simple hosted status-page that lets you communicate your status easily. This documentation will guide you to quickly set it up and start using it."
+meta_desc: "Runstatus is a simple hosted status-page that lets you communicate your application's status without needing to run your own status page. This documentation will guide you to quickly set it up and start using it."
 tags: "runstatus,quick-start"
 ---
 
-Runstatus is a simple hosted status-page that lets you communicate your status to the external world while reducing internal load in your organization.
+Runstatus is a hosted status page that lets you communicate:
 
-Runstatus is based upon some simple concepts that help you describe a defined status.
+ * your applications's current status
+ * details of planned maintenance.
+ 
+In this quick-start, you'll learn how to:
 
-* **Services** describes components of your application, infrastructure or more generally of the entity of which you want to communicate status.
-* **Incidents** are time frames where status of your services varies. An incident is composed by several **events** that compose an *incident event stream*.
-An incident can affect one or more services.
-* **Maintenances** are announced time frames where status of your services my vary in the future. A maintenance is also composed by several events that compose a *maintenance event stream*.
+ * tell Runstatus about the different components that make up your application
+ * brand your Runstatus page
+ * allow Runstatus to post updates to your chosen Twitter account
+ * use the web interface to:
+	* post a service status update
+	* schedule and announce a maintenance window
+ * use finger to query the status of an application from your terminal.
 
-Lets review some of those concepts in more detail.
+We'll describe how to use the Runstatus API in the next iteration of this guide.
 
-## Services
-Services are the core of Runstatus and the first thing you should set-up and carefully plan. Services let you describe the entity you want the status to be publicly available. Services examples could be:
+## Setting up your status page
 
-* "API"
-* "Network"
-* "Payment Process"
-* "Databse"
+To set up your status page you first need to log into your [Exoscale console](https://portal.exoscale.ch/). 
 
-You can set up services under the settings view of your Runstatus page.
-Services are not mandatory though: you can also use Runstatus without them, and simply display to the world a global status.
+**Note:** If you already have an Exoscale account, you can start using Runstatus straight away. If you don't yet have an Exoscale account, you can [register for Runstatus](https://runstatus.com/) now. 
 
-### What will be displayed to your customers about services
+Once you're logged in, click the *Runstatus* icon in the left-hand menu and then name your new status page. The name you choose:
 
-On the front end of your Runstatus page the is of your services will be visible to the world. Each service will have an icon to signal his health in a determined moment of time. Adding a new incident may vary the service and change the display of a service row in the front-end. 
+ * cannot change once you click *Create*
+ * will form the sub-domain for your status page
+ * must follow standard domain name rules: only letter, numbers and dashes are allowed and it must start with a letter or a number.
+	
+### General settings
 
-## Incidents
-An incident is the main tool to communicate a variation of your services.
-Incident can affect none, one, or several services. Incidents are composed by events which are enriched with details about that specific point in time.
-An incident is enriched with:
+Next you can specify the basic settings for your status page, including:
 
-* **State** describes the state of the selected services during an event.
-	It can be one of the following:
-	* OPERATIONAL
-	* DEGRADED PERFORMANCE
-	* PARTIAL OUTAGE
-	* MAJOR OUTAGE
+ * timezone: start typing in the format Continent/City: e.g. Europe/Zurich
+ * the Twitter account where you want your Runstatus to post your system status updates
+ * a human-friendly name to display on your status page.
+ 
+### Describing your services
 
-* **Status** describes the state of the selected services during an event.
-	It can be one of the following:
-	* RESOLVED
-	* INVESTIGATING
-	* IDENTIFIED
-	* MONITORING
+Every application has distinct components whose availability can affect user experience.
 
-When you open an incident you implicitly create a first event. You will be asked to choose a state and a status for your event, plus a general title for the incident and a description of the event. Opening an incident you can't define an Operational state.
+Under the *Services* tab you can specify those components. What you specify here should be a reflection of how your application's users experience your service rather than a detailed listing of your system architecture.
 
-Posting the incident will create a first event and bring you in the incident detail screen. From here you can continue to update your customers about the evolution of the incident posting new events.
+For example, if you have two redundant database clusters then losing one of those clusters might not take your application offline but it could reduce performance. Rather than listing each database cluster individually you might help your users more by listing a single "Database" component.
 
-At any time you can close the incident with a last event. State of your services will be set to *operational* and status to *resolved*.
+Even more useful would be to think in terms of what the users would lose in the event of an incident. Rather than "Database" you might list the services that the database supports: fofr example, "User profiles and account login", "Widget directory", "User to user messaging".
 
-### What will be displayed about incidents to your customers
+You can edit, add to or delete these components at any time.
 
-When no incidents are open, your *default status message* is displayed on top. You can change it from the settings view of your Runstatus page.
+### Branding
 
-The *Current Events* section will be empty, signaling no incidents are currently ongoing.
+To brand your page, you can specify:
 
-Once you open a incident the status message on the top will change to the incident title and will stay until you don't close the incident. Would you have more incidents open in the same time the status message will report all the titles.
+ * a logo (PNG or JPG at 200px square)
+ * a header (PNG or JPG, landscape)
+ * page colours.
+ 
+### Your status page
 
-A color code helps quickly get an idea of what's going on. Green is for operational status, yellow for degraded performance or partial outage, red for major outages. The status message will keep the color of the first incident in the time-line.
+When you have no open incidents Runstatus will display your chosen default status message and a green tick for each component you've specified.
 
-The *Current Events* section will report a line for each open incident, with the description, status and color of the state of the latest event in his event stream.
+When there is an ongoing incident Runstatus will show the most recent status update and a yellow (partial outage) or red (major outage) icon beside each affected component. Your users can then click through for the full event timeline.
 
-The service affected will show an icon corresponding to the their state.
+When you have maintenance scheduled, Runstatus lists the date and description with a link to more detail.
+ 
+## Posting an update using the web interface
 
-For each incident you will have an *incident time-line* where you will be able to follow the entire event stream.
+You can post two types of service update:
 
-All past incidents are visible from the historic view, where per-day outage times are showed too.
+ * an ongoing, unplanned, incident
+ * a maintenance period planned for a future time and date.
+ 
+### Ongoing incidents
 
-## Maintenances
-As for the incidents, maintenances are composed by events that let you describe the maintenance flow as it happens.
+To create a new ongoing incident, click the red *Add incident* button.
 
-Creating a new maintenance implies you to define a time window for it. You will be asked for a start time and an end time for your maintenance.
-A title and a description of the maintenance will also be required.
+Here you need to:
 
-Maintenances have a status too. They can be one of the following:
-	* SCHEDULED
-	* IN-PROGRESS
-	* COMPLETED
+ * Specify the level of interruption users will notice.
+ * Provide a title for the incident.
+ * Briefly describe the incident (the title and this description will form the tweet that Runstatus posts about this incident).
+ * Specify the current status of the incident.
+ * Select which of your application's services are affected.
+ 
+Once you've clicked the *Post new incident* button, Runstatus will:
 
-Unlike the incidents, maintenances status is automatically set during his life cycle. A new maintenance starts in a *scheduled* states, becomes *in progress* once you add an event to it and acquires the *completed* status when you close it.
+ * Tweet the incident to the account you specified.
+ * Update your application's Runstatus page with the details you've given.
+ * Consider this update as the first event of the incident.
+ 
+#### Updating an ongoing incident
 
-Maintenances too can be affected to services.
+As the incident evolves, you should post new events to your incident timeline.
 
-The *in progress* state is not mandatory though: you can simply close your maintenance and it will be set to *completed* immediately.
+Runstatus adds each of these updates to the incident timeline on your public status page and also posts them to your linked Twitter account.
 
-### What will be displayed about maintenances to your customers
-Scheduled maintenances are displayed on the front of your Runstatus page. They will show part of the description and will point to a detailed page where you will be able to follow the event stream too.
+To mark an incident as fixed, post a new event with a status of *Operational*.
 
-Past maintenances have their own historic time-line.
+### Scheduled maintenance
 
-## Customization of your Runstatus pages
-From the settings view you have access to several option to customize your Runstatus page.
+To announce scheduled maintenance, click the blue *Add maintenance* button.
 
-You can define your timezone, a default status message, list your services and tweak the look and feel of your status page header. A dark theme is also available.
+Here you can specify:
 
-## Twitter integration
-Under settings you have the opportunity to link your twitter account to the Runstatus application. This will allow you automatically tweet about incidents and next maintenances.
+ * the start time and date (in the timezone you specified in your status page setting)
+ * the end time and date
+ * the title and description of the maintenance (used as the tweet text)
+ * the services affected.
 
-For each new event you will be proposed a tweet text and preview to clearly see what you will tweet. Saving the event will automatically tweet and let your user be updated in no time.
+A maintenance period's status is automatic: once you post an event to the maintenance period's timeline then it is marked as *In progress*. When you close the maintenance period, the status switches to *Complete*.
 
+## History
 
+Runstatus preserves the history of all your event timelines &mdash; both unplanned incidents and scheduled maintenance &mdash; on your status page. Click the *History* icons on your status page to see past timelines.
+
+You can edit a completed incident's description, from within your Exoscale console, but you can't remove it from your status page and nor can you edit individual events.
+
+## Querying service status from your terminal
+
+You can query an application's status from your terminal, if you have the *finger* utility installed.
+
+For example, to query Exoscale's own status, type:
+
+		finger exoscale@runstat.us
+		
+You'll receive a response similar to this:
+
+		[runstat.us]
+		Service status:
+
+		|        Service |       State |
+		|----------------+-------------|
+		| Object Storage | operational |
+		|    Compute API | operational |
+		|           Apps | operational |
+		|        Compute | operational |
+		|            DNS | operational |
+
+		URL:  https://status.exoscale.ch
+
+## Making more of Runstatus
+
+You can post updates to your status page using the Runstatus API. Soon we'll publish a new guide specifically about using that API.
