@@ -26,7 +26,7 @@ tags: dns, dyndns, script, tutorials
     ddns is a A Record under the EXEMPLE.COM domain
     with a TTL of 1hour
     which means *every hour* it could be updated.
-![](add_dns_record.png)
+![](../img/dns/add_dns_record.png)
 
 ##2. On your Host with a Dynamic IP
 
