@@ -42,9 +42,9 @@ cut and past this inside this file
 		#!/bin/bash
 		LOGIN="___PUT YOUR API Key ___"
 		TOKEN="___PUT YOUR Secret Key___"
-		DOMAIN_ID="___PUT YOUR DOMAIN NAME___"
+		DOMAIN_NAME="___PUT YOUR DOMAIN NAME___"
 		IP=`dig +short myip.opendns.com @resolver1.opendns.com`
-		RECORD_ID="___PUT YOUR RECORD ID___"
+		DOMAIN_ID="___PUT YOUR RECORD ID___"
 		RECORD_NAME="___PUT YOUR SUBDOMAIN TO UPDATE (like ddns in this exemple)___"
 		RECORD_TYPE="A"
 
@@ -52,16 +52,43 @@ cut and past this inside this file
              -H "Content-Type: application/json" \
 		     -H "X-DNS-Token: $LOGIN:$TOKEN" \
     		 -X "PUT" \
-		     -i "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_ID/records/$RECORD_ID" \
+		     -i "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records/$DOMAIN_ID" \
 		     -d "{\"record\":{\"content\":\"$IP\"}}"
+
 2. Make this script executable
-		chmod 700 /root/bin/update_exodns.sh
+
+		$ chmod 700 /root/bin/update_exodns.sh
 
 3. Don't forget the **CRON** (as root)
-		crontab -e
+
+		$ crontab -e
 
 		*** ADD THIS LINE ***
         @hourly /root/bin/update_exodns.sh > /dev/null 2>&1
+
+## How to Find your DOMAIN ID
+1. **Make script file like /root/bin/getid_exodns.sh**  
+cut and past this inside this file  
+
+		#!/bin/bash
+		#The best I could it's this ugly script
+		LOGIN="___PUT YOUR API Key ___"
+		TOKEN="___PUT YOUR Secret Key___"
+		DOMAIN_NAME="___PUT YOUR DOMAIN NAME___"
+
+		curl -H "Accept: application/json" \
+	             -H "Content-Type: application/json" \
+		     -H "X-DNS-Token: $LOGIN:$TOKEN" \
+    		     -i "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records" \
+    		     	| awk -F',"' '{print $2}'
+
+2. Make this script executable
+
+		$ chmod 700 /root/bin/getid_exodns.sh
+
+3. Run it
+
+		$ /root/bin/getid_exodns.sh
 
 inspired by : [Bash Script for DNSimple](https://developer.dnsimple.com/ddns/)
 
