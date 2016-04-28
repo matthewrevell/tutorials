@@ -26,9 +26,13 @@ tags: "dns, dyndns, api, script, tutorials"
 	6. ns1.exoscale.net
 
 3. **Add A Record under your domain**
+
     such as into this exemple : ddns.EXEMPLE.COM
+
     ddns is a A Record under the EXEMPLE.COM domain
+
     with a TTL of 1hour
+
     which means *every hour* it could be updated.
 ![](../img/dns/add_dns_record.png)
 
@@ -63,4 +67,5 @@ cut and past this inside this file
         @hourly /root/bin/update_exodns.sh > /dev/null 2>&1
 
 inspired by : [Bash Script for DNSimple](https://developer.dnsimple.com/ddns/)
+
 which could be probably adapted for : Ruby, Node.js, GOlang & Windows. [see more](https://developer.dnsimple.com/tools/).
