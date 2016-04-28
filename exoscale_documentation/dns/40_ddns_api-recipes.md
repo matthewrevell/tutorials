@@ -1,8 +1,12 @@
-title: Make your own DynDNS
-date: 2016-04-28 00:00 +01:00
-category: dns
-authors: JOduMonT
-tags: dns, dyndns, script, tutorials
+---
+title: "Make your own DynDNS"
+meta_desc: "How to make your own DynDNS with Exoscale DNS Service."
+date: "2016-04-28 00:00 +01:00"
+authors: "JOduMonT"
+category: "dns"
+slug: "dns"
+tags: "dns, dyndns, api, script, tutorials"
+---
 
 # Make your own DynDNS with Exoscale
 
