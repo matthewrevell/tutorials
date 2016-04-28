@@ -43,7 +43,7 @@ cut and past this inside this file
 		LOGIN="___PUT YOUR API Key ___"
 		TOKEN="___PUT YOUR Secret Key___"
 		DOMAIN_ID="___PUT YOUR DOMAIN NAME___"
-		IP=`curl -s http://icanhazip.com/`
+		IP=`dig +short myip.opendns.com @resolver1.opendns.com`
 		RECORD_ID="___PUT YOUR RECORD ID___"
 		RECORD_NAME="___PUT YOUR SUBDOMAIN TO UPDATE (like ddns in this exemple)___"
 		RECORD_TYPE="A"
