@@ -44,7 +44,7 @@ cut and past this inside this file
 		TOKEN="___PUT YOUR Secret Key___"
 		DOMAIN_NAME="___PUT YOUR DOMAIN NAME___"
 		IP=`dig +short myip.opendns.com @resolver1.opendns.com`
-		DOMAIN_ID="___PUT YOUR RECORD ID___"
+		RECORD_ID="___PUT YOUR RECORD ID___"
 		RECORD_NAME="___PUT YOUR SUBDOMAIN TO UPDATE (like ddns in this exemple)___"
 		RECORD_TYPE="A"
 
@@ -52,7 +52,7 @@ cut and past this inside this file
              -H "Content-Type: application/json" \
 		     -H "X-DNS-Token: $LOGIN:$TOKEN" \
     		 -X "PUT" \
-		     -i "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records/$DOMAIN_ID" \
+		     -i "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records/$RECORD_ID" \
 		     -d "{\"record\":{\"content\":\"$IP\"}}"
 
 2. Make this script executable
@@ -66,7 +66,7 @@ cut and past this inside this file
 		*** ADD THIS LINE ***
         @hourly /root/bin/update_exodns.sh > /dev/null 2>&1
 
-## How to Find your DOMAIN ID
+## How to Find your RECORD ID
 1. **Make script file like /root/bin/getid_exodns.sh**  
 cut and past this inside this file  
 
@@ -77,10 +77,8 @@ cut and past this inside this file
 		DOMAIN_NAME="___PUT YOUR DOMAIN NAME___"
 
 		curl -H "Accept: application/json" \
-	             -H "Content-Type: application/json" \
 		     -H "X-DNS-Token: $LOGIN:$TOKEN" \
-    		     -i "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records" \
-    		     	| awk -F',"' '{print $2}'
+    		     "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records"
 
 2. Make this script executable
 
@@ -89,6 +87,13 @@ cut and past this inside this file
 3. Run it
 
 		$ /root/bin/getid_exodns.sh
+
+
+4. Look for your subdomain in the output and identify your RECORD_ID
+as in this exemple ddns.$DOMAIN.$TLD
+
+{"record":{"id":**12345678**,"domain_id":123456,"parent_id":null,"name":"**ddns**","content":"1.2.3.4","ttl":600,"prio":null,"record_type":"A","system_record":false,"created_at":"2016-04-27T22:46:38.990Z","updated_at":"2016-04-28T06:20:19.453Z"}}
+
 
 inspired by : [Bash Script for DNSimple](https://developer.dnsimple.com/ddns/)
 
