@@ -40,20 +40,15 @@ cut and past this inside this file
 *find your API Key and Secret [here](https://portal.exoscale.ch/account/profile/api)*
 
 		#!/bin/bash
-		LOGIN="___PUT YOUR API Key ___"
-		TOKEN="___PUT YOUR Secret Key___"
+		API="___PUT YOUR API Key ___"
+		Secret="___PUT YOUR Secret Key___"
 		DOMAIN_NAME="___PUT YOUR DOMAIN NAME___"
 		IP=`dig +short myip.opendns.com @resolver1.opendns.com`
 		RECORD_ID="___PUT YOUR RECORD ID___"
 		RECORD_NAME="___PUT YOUR SUBDOMAIN TO UPDATE (like ddns in this exemple)___"
 		RECORD_TYPE="A"
 
-		curl -H "Accept: application/json" \
-             -H "Content-Type: application/json" \
-		     -H "X-DNS-Token: $LOGIN:$TOKEN" \
-    		 -X "PUT" \
-		     -i "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records/$RECORD_ID" \
-		     -d "{\"record\":{\"content\":\"$IP\"}}"
+		curl -H "X-DNS-Token: $API:$Secret" -H "Accept: application/json" -H "Content-Type: application/json" -X "PUT" -i "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records/$RECORD_ID" -d "{\"record\":{\"content\":\"$IP\"}}"
 
 2. Make this script executable
 
@@ -72,13 +67,11 @@ cut and past this inside this file
 
 		#!/bin/bash
 		#The best I could it's this ugly script
-		LOGIN="___PUT YOUR API Key ___"
-		TOKEN="___PUT YOUR Secret Key___"
+		API="___PUT YOUR API Key ___"
+		Secret="___PUT YOUR Secret Key___"
 		DOMAIN_NAME="___PUT YOUR DOMAIN NAME___"
 
-		curl -H "Accept: application/json" \
-		     -H "X-DNS-Token: $LOGIN:$TOKEN" \
-    		     "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records"
+		curl -H "X-DNS-Token: $API:$Secret" -H "Accept: application/json" "https://api.exoscale.ch/dns/v1/domains/$DOMAIN_NAME/records"
 
 2. Make this script executable
 
